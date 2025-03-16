@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Program 4</title>
+    <style>
+        img {
+            transition: 2s;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">Click Me!</button>
+    <br/><br/>
+    <img id="img" src="https://th.bing.com/th/id/OIP.CpkCfkQ2WY5fWw7RKfhVYwHaC-?w=337&h=140&c=7&r=0&o=5&dpr=1.3&pid=1.7"  height="60%" width="60%"/>
+    
+    <script>
+        const btn = document.getElementById("btn");
+        const img = document.getElementById("img");
+
+        btn.addEventListener("click", () => {
+            console.log("button pressed");
+        });
+
+        btn.addEventListener("click", (event) => {
+            console.log(event);
+        });
+
+        img.addEventListener("mouseover", () => {
+            img.style.border = "40px solid red";
+        });
+
+        img.addEventListener("mouseout", () => {
+            img.style.border = "40px solid blue";
+        });
+
+        document.addEventListener("keydown", (event) => {
+            console.log(`Key pressed: ${event.key}`);
+        });
+    </script>
+</body>
+</html>
