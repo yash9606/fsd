@@ -1,31 +1,39 @@
-import PromptSync from 'prompt-sync';
-const prompt = PromptSync();
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Student Object</title>
+    <script>
+        // Function to create a student object
+        function createStudent() {
+            return {
+                name: prompt("Enter the student's name:"),
+                grade: parseInt(prompt("Enter the student's grade:")),
+                subjects: prompt("Enter the student's subjects separated by commas:")
+                          .split(',')
+                          .map(subject => subject.trim())
+            };
+        }
 
-const name = prompt("Enter the name: ");
-const grade = parseInt(prompt("Enter the grade: "));
-const subjects = prompt("Enter the subjects separated by commas: ")
-                .split(',')
-                .map(subject => subject.trim());
+        // Function to display student details
+        function displayInfo(student) {
+            console.log("Student Details:");
+            
+            for (let key in student) {
+                console.log(`${key}: ${student[key]}`);
+            }
 
-const student = {
-    name: name,
-    grade: grade,
-    subjects: subjects,
-    
-    displayInfo: function() {
-        console.log("Student details:");
-        console.log(`Name is ${this.name}`);
-        console.log(`Grade is ${this.grade}`);
-        console.log(`Subjects are ${this.subjects.join(', ')}`);
-    }
-};
+            console.log("Passed:", student.passed ? "Yes" : "No"); // ✅ Corrected
+            console.log("------------------------------");
+        }
 
-student.passed = student.grade >= 40;
-student.displayInfo();
+        window.onload = function() {
+            let student = createStudent();
+            student.passed = student.grade >= 40; // ✅ Boolean property, not function
+            displayInfo(student);
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
 
-console.log("Complete student details:");
-for (let key in student) {
-    if (typeof student[key] !== 'function') {
-        console.log(`${key}: ${typeof student[key] === 'object' ? JSON.stringify(student[key]) : student[key]}`);
-    }
-}
